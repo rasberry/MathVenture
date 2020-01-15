@@ -36,6 +36,8 @@ namespace SequenceGen.Generators
 		BigInteger k,l,n,q,r,t;
 		int state = 0;
 
+		// https://www.cs.ox.ac.uk/jeremy.gibbons/publications/spigot.pdf
+		// https://rosettacode.org/wiki/Pi
 		BigInteger GetNext()
 		{
 			BigInteger nn, nr;
@@ -56,6 +58,7 @@ namespace SequenceGen.Generators
 						r = nr;
 					}
 				}
+				//Note: replacing TEN with another number changes the base
 				else if (state == 1) {
 					nr = TEN*(r - (n*t));
 					n = TEN*(THREE*q + r)/t - (TEN*n);
