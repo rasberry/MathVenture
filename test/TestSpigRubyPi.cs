@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SequenceGen.Generators;
@@ -6,13 +5,13 @@ using SequenceGen.Generators;
 namespace test
 {
 	[TestClass]
-	public class TestConstPi
+	public class TestSpigRubyPi
 	{
 		[TestMethod]
 		public void TestMethod1()
 		{
 			int max = 1000;
-			var gen = new ConstPi();
+			var gen = new SpigRubyPi();
 			string path = Path.Join(Helpers.ProjectRoot,"test/data/pi-data.txt");
 			var fil = Helpers.ReadDigitsFromFile(path);
 			var fig = fil.GetEnumerator();
