@@ -29,5 +29,6 @@ namespace SequenceGen.Generators
 
 		public abstract BigInteger P(BigInteger k);
 		public abstract BigInteger Q(BigInteger k);
+		public abstract BigInteger QFirst { get; }
 	}
 }

@@ -5,7 +5,20 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
+
+	//Generate the continued fraction parts
+	// p0 / (q0 + (p1 / (q1 + p2 / (q2 + ... ))))
+	// k = 0,1,2 ...
+	//TODO fix problem when sequence sarts with q0 instead of p0
+	public interface ISpigotConfig
+	{
+		BigInteger P(BigInteger k);
+		BigInteger Q(BigInteger k);
+		BigInteger QFirst { get; }
+	}
+
 	// http://www.cs.utsa.edu/~wagner/pi/ruby/pi_works.html
+	// https://en.wikipedia.org/wiki/Generalized_continued_fraction
 
 	public class SpigotCore : IGenerator
 	{
@@ -23,11 +36,13 @@ namespace SequenceGen.Generators
 		{
 			k = 2;
 			state = 0;
-			var p0 = a = config.P(0);
+			var qf = config.QFirst;
 			var q0 = b = config.Q(0);
-			var p1 = config.P(1);
+			var p0 = config.P(0);
+			a = qf * q0 + p0;
 			var q1 = config.Q(1);
-			a1 = p0 * q1;
+			var p1 = config.P(1);
+			a1 = (q0 * q1 + p1) * qf + p0 * q1;
 			b1 = q0 * q1 + p1;
 		}
 
@@ -65,14 +80,5 @@ namespace SequenceGen.Generators
 				}
 			}
 		}
-	}
-
-	//Generate the continued fraction parts
-	// p0 / (q0 + (p1 / (q1 + p2 / (q2 + ... ))))
-	// k = 0,1,2 ...
-	public interface ISpigotConfig
-	{
-		BigInteger P(BigInteger k);
-		BigInteger Q(BigInteger k);
 	}
 }

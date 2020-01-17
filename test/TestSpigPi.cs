@@ -5,13 +5,13 @@ using SequenceGen.Generators;
 namespace test
 {
 	[TestClass]
-	public class TestSpigRubyPi
+	public class TestSpigPi
 	{
 		[TestMethod]
 		public void TestMethod1()
 		{
 			int max = 1000;
-			var gen = new SpigRubyPi();
+			var gen = new SpigPi();
 			string path = Path.Join(Helpers.ProjectRoot,"test/data/pi-data.txt");
 			var fil = Helpers.ReadDigitsFromFile(path);
 			var fig = fil.GetEnumerator();

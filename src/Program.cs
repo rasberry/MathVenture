@@ -8,8 +8,11 @@ namespace SequenceGen
 		static void Main(string[] args)
 		{
 			//var pi = new ConstPi();
-			//var pi = new SpigRubySqrt2();
-			var pi = new SpigPi();
+			//var pi = new SpigSqrt2();
+			//var pi = new SpigPi();
+			//var pi = new SpigE();
+			var pi = new SpigPhi();
+			// var pi = new SpigPi2();
 			for(int i=0; i<1000; i++) {
 				Console.Write(pi.Next);
 			}

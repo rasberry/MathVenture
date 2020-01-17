@@ -5,23 +5,26 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	//pn =  4  1  4  9 16 ... k*k
-	//qn =  1  3  5  7  9 ... 2*k+1
+	//pn =  4  1  9 25 49 ... (2*(k-1)+1)^2
+	//qn =  1  2  2  2  2 ... 2
 
-	public class SpigPi : AbstractSpigot
+	public class SpigPi2 : AbstractSpigot
 	{
-		public SpigPi() : base()
+		public SpigPi2() : base()
 		{}
 
+		//TODO this one locks up .. ?
 		public override BigInteger P(BigInteger k)
 		{
 			if (k == 0) { return 4; }
-			return k*k;
+			var one = 2*(k-1)+1;
+			return one * one;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			return 2 * k + 1;
+			if (k == 0) { return 1; }
+			return 2;
 		}
 
 		public override BigInteger QFirst { get { return 0; }}

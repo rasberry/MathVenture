@@ -5,25 +5,24 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	//pn =  4  1  4  9 16 ... k*k
-	//qn =  1  3  5  7  9 ... 2*k+1
+	// pn =   1 1 1 1 ... 1
+	// qn = 1 1 1 1 1 ... 1
 
-	public class SpigPi : AbstractSpigot
+	public class SpigPhi : AbstractSpigot
 	{
-		public SpigPi() : base()
+		public SpigPhi() : base()
 		{}
 
 		public override BigInteger P(BigInteger k)
 		{
-			if (k == 0) { return 4; }
-			return k*k;
+			return 1;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			return 2 * k + 1;
+			return 1;
 		}
 
-		public override BigInteger QFirst { get { return 0; }}
+		public override BigInteger QFirst { get { return 1; }}
 	}
 }
