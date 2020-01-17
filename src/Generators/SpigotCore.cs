@@ -44,6 +44,10 @@ namespace SequenceGen.Generators
 			var p1 = config.P(1);
 			a1 = (q0 * q1 + p1) * qf + p0 * q1;
 			b1 = q0 * q1 + p1;
+
+			//TODO don't really like QFirst solution
+			// would prefer to replace QFirst with
+			// a boolean to skip p0 instead
 		}
 
 		BigInteger k,a,b,a1,b1;
