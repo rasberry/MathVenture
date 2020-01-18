@@ -7,6 +7,7 @@ namespace SequenceGen
 	{
 		static void Main(string[] args)
 		{
+			//TODO rename spig to Cofra (short for continued fraction)
 			//var pi = new ConstPi();
 			//var pi = new SpigSqrt2();
 			//var pi = new SpigPi();

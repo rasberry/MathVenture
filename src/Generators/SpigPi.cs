@@ -13,17 +13,22 @@ namespace SequenceGen.Generators
 		public SpigPi() : base()
 		{}
 
+		readonly BigInteger ZERO = 0;
+		readonly BigInteger ONE = 1;
+		readonly BigInteger TWO = 2;
+		readonly BigInteger FOUR = 4;
+
 		public override BigInteger P(BigInteger k)
 		{
-			if (k == 0) { return 4; }
-			return k*k;
+			if (k == ZERO) { return FOUR; }
+			return k * k;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			return 2 * k + 1;
+			return TWO * k + ONE;
 		}
 
-		public override BigInteger QFirst { get { return 0; }}
+		public override BigInteger QFirst { get { return ZERO; }}
 	}
 }

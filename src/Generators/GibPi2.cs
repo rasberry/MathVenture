@@ -23,18 +23,26 @@ namespace SequenceGen.Generators
 			q = 1; r = 180; t = 60; i = 2;
 		}
 
+		readonly BigInteger ONE = 1;
+		readonly BigInteger TWO = 2;
+		readonly BigInteger THREE = 3;
+		readonly BigInteger FIVE = 5;
+		readonly BigInteger TEN = 10;
+		readonly BigInteger TWELVE = 12;
+		readonly BigInteger TWENTYSEVEN = 27;
+
 		BigInteger q,r,t,i;
 
 		BigInteger GetNext()
 		{
 			BigInteger u,y;
-			u = 3*(3*i+1)*(3*i+2); //i
-			y = (q*(27*i-12)+5*r) / (5*t); //q i r t
+			u = THREE * (THREE * i + ONE) * (THREE * i + TWO); //i
+			y = (q * (TWENTYSEVEN * i - TWELVE) + FIVE * r) / (FIVE * t); //q i r t
 
-			r = 10*u*(q*(5*i-2)+r-y*t); // u q i r y t
-			q = 10*q*i*(2*i-1); // q i
-			t = t*u; // t u
-			i = i+1; // i
+			r = TEN * u * (q * (FIVE * i - TWO) + r - y * t); // u q i r y t
+			q = TEN * q * i * (TWO * i - ONE); // q i
+			t = t * u; // t u
+			i = i + ONE; // i
 
 			return y;
 		}

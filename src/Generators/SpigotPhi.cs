@@ -13,16 +13,18 @@ namespace SequenceGen.Generators
 		public SpigPhi() : base()
 		{}
 
+		readonly BigInteger ONE = 1;
+
 		public override BigInteger P(BigInteger k)
 		{
-			return 1;
+			return ONE;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			return 1;
+			return ONE;
 		}
 
-		public override BigInteger QFirst { get { return 1; }}
+		public override BigInteger QFirst { get { return ONE; }}
 	}
 }

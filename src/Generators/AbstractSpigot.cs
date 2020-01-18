@@ -9,7 +9,7 @@ namespace SequenceGen.Generators
 	{
 		public AbstractSpigot()
 		{
-			Core = new SpigotCore(this);
+			Core = new CofraCore(this);
 			Reset();
 		}
 
@@ -21,7 +21,7 @@ namespace SequenceGen.Generators
 			Core.Reset();
 		}
 
-		SpigotCore Core;
+		CofraCore Core;
 
 		Digit GetNext() {
 			return Core.Next;

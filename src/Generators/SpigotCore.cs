@@ -50,6 +50,7 @@ namespace SequenceGen.Generators
 			// a boolean to skip p0 instead
 		}
 
+		readonly BigInteger TEN = 10;
 		BigInteger k,a,b,a1,b1;
 		int state = 0;
 		ISpigotConfig config;
@@ -79,7 +80,7 @@ namespace SequenceGen.Generators
 				}
 				else if (state == 2)
 				{
-					(a, a1) = (10*(a%b), 10*(a1%b1));
+					(a, a1) = (TEN*(a%b), TEN*(a1%b1));
 					(d, d1) = (a/b, a1/b1);
 					state = 1;
 				}

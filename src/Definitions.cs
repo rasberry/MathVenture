@@ -8,4 +8,9 @@ namespace SequenceGen
 		Digit Next { get; }
 		void Reset();
 	}
+
+	public interface ICanHasBases
+	{
+		int Base { get; set; }
+	}
 }

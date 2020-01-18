@@ -13,17 +13,24 @@ namespace SequenceGen.Generators
 		public SpigE2() : base()
 		{}
 
+		readonly BigInteger ONE = 1;
+		readonly BigInteger TWO = 2;
+		readonly BigInteger THREE = 3;
+
+
 		public override BigInteger P(BigInteger k)
 		{
-			return 1;
+			return ONE;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			if (k%3==1) { return 2*(k+2)/3; }
-			return 1;
+			if (k % THREE == ONE) {
+				return TWO * (k + TWO) / THREE;
+			}
+			return ONE;
 		}
 
-		public override BigInteger QFirst { get { return 2; }}
+		public override BigInteger QFirst { get { return TWO; }}
 	}
 }

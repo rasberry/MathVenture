@@ -10,7 +10,7 @@ namespace test
 	{
 		void TestCommon(SequenceGen.IGenerator gen)
 		{
-			int max = 10000;
+			int max = 1000;
 			string path = Path.Join(Helpers.ProjectRoot,"test/data/pi-data.txt");
 			var fil = Helpers.ReadDigitsFromFile(path);
 			var fig = fil.GetEnumerator();
@@ -24,7 +24,7 @@ namespace test
 		}
 
 		[TestMethod]
-		public void ConstPi() { TestCommon(new ConstPi()); }
+		public void GibPi() { TestCommon(new GibPi()); }
 
 		[TestMethod]
 		public void GibPi2() { TestCommon(new GibPi2()); }

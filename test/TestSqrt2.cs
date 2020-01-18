@@ -7,11 +7,9 @@ namespace test
 	[TestClass]
 	public class TestSpigSqrt2
 	{
-		[TestMethod]
-		public void TestMethod1()
+		void TestCommon(SequenceGen.IGenerator gen)
 		{
 			int max = 1000;
-			var gen = new SpigSqrt2();
 			string path = Path.Join(Helpers.ProjectRoot,"test/data/sqrt2-data.txt");
 			var fil = Helpers.ReadDigitsFromFile(path);
 			var fig = fil.GetEnumerator();
@@ -23,6 +21,8 @@ namespace test
 				Assert.AreEqual(o,t);
 			}
 		}
-	}
 
+		[TestMethod]
+		public void SpigSqrt2() { TestCommon(new SpigSqrt2()); }
+	}
 }
