@@ -66,6 +66,7 @@ namespace SequenceGen.Generators
 					(p, q, k) = (config.P(k), config.Q(k), k+1);
 					(a, b, a1, b1) = (a1, b1, p*a+q*a1, p*b+q*b1);
 					(d, d1) = (a/b, a1/b1);
+					// Console.WriteLine($"k={k} d={d} d1={d1} a={a} b={b} a1={a1} b1={b1}");
 					state = 1;
 				}
 				else if (state == 1)

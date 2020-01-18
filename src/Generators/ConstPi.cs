@@ -34,37 +34,27 @@ namespace SequenceGen.Generators
 		readonly BigInteger TWO = new BigInteger(2);
  
 		BigInteger k,l,n,q,r,t;
-		int state = 0;
 
 		// https://www.cs.ox.ac.uk/jeremy.gibbons/publications/spigot.pdf
 		// https://rosettacode.org/wiki/Pi
 		BigInteger GetNext()
 		{
-			BigInteger nn, nr;
 			while(true) {
-				if (state == 0) {
-					if ((FOUR*q + r - t).CompareTo(n*t) == -1) {
-						state = 1;
-						return n;
-					}
-					else {
-						nr = (TWO*q + r)*l;
-						nn = (q*(SEVEN*k) + TWO + r*l)/(t*l);
-						q *= k;
-						t *= l;
-						l += TWO;
-						k += BigInteger.One;
-						n = nn;
-						r = nr;
-					}
-				}
-				//Note: replacing TEN with another number changes the base
-				else if (state == 1) {
-					nr = TEN*(r - (n*t));
+				if ((FOUR*q + r - t).CompareTo(n*t) == -1) {
+					var a = n;
+					//Note: replacing TEN with another number changes the base
 					n = TEN*(THREE*q + r)/t - (TEN*n);
+					r = TEN*(r - (a*t));
 					q *= TEN;
-					r = nr;
-					state = 0;
+					return a;
+				}
+				else {
+					n = (q*(SEVEN*k) + TWO + r*l)/(t*l);
+					r = (TWO*q + r)*l;
+					q *= k;
+					t *= l;
+					l += TWO;
+					k += BigInteger.One;
 				}
 			}
 		}
