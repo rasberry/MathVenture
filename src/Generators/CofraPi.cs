@@ -8,9 +8,9 @@ namespace SequenceGen.Generators
 	//pn =  4  1  4  9 16 ... k*k
 	//qn =  1  3  5  7  9 ... 2*k+1
 
-	public class SpigPi : AbstractSpigot
+	public class CofraPi : AbstractCofra
 	{
-		public SpigPi() : base()
+		public CofraPi() : base()
 		{}
 
 		readonly BigInteger ZERO = 0;

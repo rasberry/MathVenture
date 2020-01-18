@@ -8,9 +8,9 @@ namespace SequenceGen.Generators
 	// pn =   1 1 1 1 ... 1
 	// qn = 1 2 2 2 2 ... 2
 
-	public class SpigSqrt2 : AbstractSpigot
+	public class CofraSqrt2 : AbstractCofra
 	{
-		public SpigSqrt2() : base()
+		public CofraSqrt2() : base()
 		{}
 
 		readonly BigInteger ONE = 1;

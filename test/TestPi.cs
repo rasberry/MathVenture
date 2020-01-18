@@ -30,6 +30,6 @@ namespace test
 		public void GibPi2() { TestCommon(new GibPi2()); }
 
 		[TestMethod]
-		public void SpigPi() { TestCommon(new SpigPi()); }
+		public void CofraPi() { TestCommon(new CofraPi()); }
 	}
 }

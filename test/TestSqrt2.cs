@@ -5,7 +5,7 @@ using SequenceGen.Generators;
 namespace test
 {
 	[TestClass]
-	public class TestSpigSqrt2
+	public class TestSqrt2
 	{
 		void TestCommon(SequenceGen.IGenerator gen)
 		{
@@ -23,6 +23,6 @@ namespace test
 		}
 
 		[TestMethod]
-		public void SpigSqrt2() { TestCommon(new SpigSqrt2()); }
+		public void CofraSqrt2() { TestCommon(new CofraSqrt2()); }
 	}
 }

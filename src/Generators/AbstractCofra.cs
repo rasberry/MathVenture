@@ -5,9 +5,9 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	public abstract class AbstractSpigot : IGenerator, ISpigotConfig
+	public abstract class AbstractCofra : IGenerator, ICofraConfig
 	{
-		public AbstractSpigot()
+		public AbstractCofra()
 		{
 			Core = new CofraCore(this);
 			Reset();

@@ -10,7 +10,7 @@ namespace SequenceGen.Generators
 	// p0 / (q0 + (p1 / (q1 + p2 / (q2 + ... ))))
 	// k = 0,1,2 ...
 	//TODO fix problem when sequence sarts with q0 instead of p0
-	public interface ISpigotConfig
+	public interface ICofraConfig
 	{
 		BigInteger P(BigInteger k);
 		BigInteger Q(BigInteger k);
@@ -20,9 +20,10 @@ namespace SequenceGen.Generators
 	// http://www.cs.utsa.edu/~wagner/pi/ruby/pi_works.html
 	// https://en.wikipedia.org/wiki/Generalized_continued_fraction
 
-	public class SpigotCore : IGenerator
+	//continued fractions engine
+	public class CofraCore : IGenerator
 	{
-		public SpigotCore(ISpigotConfig config)
+		public CofraCore(ICofraConfig config)
 		{
 			this.config = config;
 			Reset();
@@ -53,7 +54,7 @@ namespace SequenceGen.Generators
 		readonly BigInteger TEN = 10;
 		BigInteger k,a,b,a1,b1;
 		int state = 0;
-		ISpigotConfig config;
+		ICofraConfig config;
 
 		// could have built an IEnumerator, but meh..
 		Digit GetNext()

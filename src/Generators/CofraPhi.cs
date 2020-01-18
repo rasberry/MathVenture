@@ -8,9 +8,9 @@ namespace SequenceGen.Generators
 	// pn =   1 1 1 1 ... 1
 	// qn = 1 1 1 1 1 ... 1
 
-	public class SpigPhi : AbstractSpigot
+	public class CofraPhi : AbstractCofra
 	{
-		public SpigPhi() : base()
+		public CofraPhi() : base()
 		{}
 
 		readonly BigInteger ONE = 1;
