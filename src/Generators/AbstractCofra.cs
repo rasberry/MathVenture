@@ -5,7 +5,8 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	public abstract class AbstractCofra : IGenerator, ICofraConfig
+	//wraps the CofraCore 
+	public abstract class AbstractCofra : IGenerator, ICofraConfig, ICanHasBases
 	{
 		public AbstractCofra()
 		{
@@ -14,18 +15,19 @@ namespace SequenceGen.Generators
 		}
 
 		public Digit Next { get {
-			return GetNext();
+			return Core.Next;
 		}}
 
 		public void Reset() {
 			Core.Reset();
 		}
 
-		CofraCore Core;
-
-		Digit GetNext() {
-			return Core.Next;
+		public int Base {
+			get { return Core.Base; }
+			set { Core.Base = value; }
 		}
+
+		CofraCore Core;
 
 		public abstract BigInteger P(BigInteger k);
 		public abstract BigInteger Q(BigInteger k);

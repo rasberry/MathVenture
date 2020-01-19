@@ -10,7 +10,7 @@ namespace test
 		void TestCommon(SequenceGen.IGenerator gen)
 		{
 			int max = 1000;
-			string path = Path.Join(Helpers.ProjectRoot,"test/data/sqrt2-data.txt");
+			string path = Path.Join(Helpers.ProjectRoot,"test/data/sqrt2-base10.txt");
 			var fil = Helpers.ReadDigitsFromFile(path);
 			var fig = fil.GetEnumerator();
 			while(--max > 0) {

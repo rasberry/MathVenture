@@ -8,7 +8,7 @@ namespace SequenceGen.Generators
 	// https://www.cs.ox.ac.uk/jeremy.gibbons/publications/spigot.pdf
 	// https://rosettacode.org/wiki/Pi
 
-	public class GibPi : IGenerator
+	public class GibPi : IGenerator, ICanHasBases
 	{
 		public GibPi() : base()
 		{
@@ -17,8 +17,13 @@ namespace SequenceGen.Generators
 
 		public Digit Next { get {
 			var next = GetNext();
-			return new Digit((int)next);
+			return new Digit((int)next,(int)_base);
 		}}
+
+		public int Base {
+			get { return (int)_base; }
+			set { _base = value; }
+		}
 
 		public void Reset()
 		{
@@ -30,9 +35,9 @@ namespace SequenceGen.Generators
 		readonly BigInteger THREE = 3;
 		readonly BigInteger FOUR = 4;
 		readonly BigInteger SEVEN = 7;
-		readonly BigInteger TEN = 10;
 
 		BigInteger q,r,t,k,n,l;
+		BigInteger _base = 10;
 
 		BigInteger GetNext()
 		{
@@ -41,10 +46,9 @@ namespace SequenceGen.Generators
 				// Console.WriteLine($"q={q} r={r} t={t} k={k} n={n} l={l} if {4*q+r-t} < {n*t}");
 				if (FOUR*q+r-t < n*t) {
 					var a = n; //needed a temp var to make order work out
-					//Note: replacing 10 with another number changes the base
-					n = TEN*(THREE*q+r)/t - (TEN*n); // q r t n
-					r = TEN*(r-a*t); //r a t
-					q = TEN*q;
+					n = _base*(THREE*q+r)/t - (_base*n); // q r t n
+					r = _base*(r-a*t); //r a t
+					q = _base*q;
 					return a;
 				}
 				else {

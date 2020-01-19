@@ -10,6 +10,7 @@ namespace SequenceGen.Generators
 	// p0 / (q0 + (p1 / (q1 + p2 / (q2 + ... ))))
 	// k = 0,1,2 ...
 	//TODO fix problem when sequence sarts with q0 instead of p0
+
 	public interface ICofraConfig
 	{
 		BigInteger P(BigInteger k);
@@ -20,8 +21,8 @@ namespace SequenceGen.Generators
 	// http://www.cs.utsa.edu/~wagner/pi/ruby/pi_works.html
 	// https://en.wikipedia.org/wiki/Generalized_continued_fraction
 
-	//continued fractions engine
-	public class CofraCore : IGenerator
+	// Continued Fractions spigot engine
+	public class CofraCore : IGenerator, ICanHasBases
 	{
 		public CofraCore(ICofraConfig config)
 		{
@@ -32,6 +33,11 @@ namespace SequenceGen.Generators
 		public Digit Next { get {
 			return GetNext();
 		}}
+
+		public int Base {
+			get { return (int)_base; }
+			set { _base = value; }
+		}
 
 		public void Reset()
 		{
@@ -51,10 +57,10 @@ namespace SequenceGen.Generators
 			// a boolean to skip p0 instead
 		}
 
-		readonly BigInteger TEN = 10;
 		BigInteger k,a,b,a1,b1;
 		int state = 0;
 		ICofraConfig config;
+		BigInteger _base = 10;
 
 		// could have built an IEnumerator, but meh..
 		Digit GetNext()
@@ -75,13 +81,13 @@ namespace SequenceGen.Generators
 				{
 					if (d == d1) {
 						state = 2;
-						return new Digit((int)d);
+						return new Digit((int)d,(int)_base);
 					}
 					state = 0;
 				}
 				else if (state == 2)
 				{
-					(a, a1) = (TEN*(a%b), TEN*(a1%b1));
+					(a, a1) = (_base*(a%b), _base*(a1%b1));
 					(d, d1) = (a/b, a1/b1);
 					state = 1;
 				}

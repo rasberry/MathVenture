@@ -6,6 +6,7 @@ using System.Numerics;
 namespace SequenceGen.Generators
 {
 	// https://www.cs.ox.ac.uk/jeremy.gibbons/publications/spigot.pdf
+
 	public class GibPi2 : IGenerator
 	{
 		public GibPi2() : base()
@@ -33,6 +34,8 @@ namespace SequenceGen.Generators
 
 		BigInteger q,r,t,i;
 
+		//Note: since this version doesn't have the check step (I think) it
+		// only supports bases below 10
 		BigInteger GetNext()
 		{
 			BigInteger u,y;
