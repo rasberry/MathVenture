@@ -5,7 +5,8 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	// pn =   1 1 1 1 ... 1
+	// k  = 0 1 2 3 4
+	// pn = 1 1 1 1 1 ... 1
 	// qn = 1 2 2 2 2 ... 2
 
 	public class CofraSqrt2 : AbstractCofra
@@ -13,6 +14,7 @@ namespace SequenceGen.Generators
 		public CofraSqrt2() : base()
 		{}
 
+		readonly BigInteger ZERO = 0;
 		readonly BigInteger ONE = 1;
 		readonly BigInteger TWO = 2;
 
@@ -23,10 +25,13 @@ namespace SequenceGen.Generators
 
 		public override BigInteger Q(BigInteger k)
 		{
+			if (k == ZERO) { return ONE; }
 			return TWO;
 		}
 
-		public override BigInteger QFirst { get { return ONE; }}
+		public override PickForm Form { get {
+			return PickForm.StartWithQ;
+		}}
 	}
 }
 

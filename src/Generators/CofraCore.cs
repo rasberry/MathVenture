@@ -5,17 +5,23 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-
-	//Generate the continued fraction parts
+	//Choose one from to use
+	//StartWithP
 	// p0 / (q0 + (p1 / (q1 + p2 / (q2 + ... ))))
-	// k = 0,1,2 ...
-	//TODO fix problem when sequence sarts with q0 instead of p0
+	//StartWithQ
+	// q0 + p0 / (q1 + p1 / (q2 + p2 / ( ... )))
+
+	public enum PickForm
+	{
+		StartWithP,
+		StartWithQ
+	}
 
 	public interface ICofraConfig
 	{
 		BigInteger P(BigInteger k);
 		BigInteger Q(BigInteger k);
-		BigInteger QFirst { get; }
+		PickForm Form { get; }
 	}
 
 	// http://www.cs.utsa.edu/~wagner/pi/ruby/pi_works.html
@@ -39,22 +45,29 @@ namespace SequenceGen.Generators
 			set { _base = value; }
 		}
 
+		// qf + p0 / (q0 + p1 / ( ... ))
+		// q0 + p0 / (q1 + p1 / ( ... ))
 		public void Reset()
 		{
 			k = 2;
 			state = 0;
-			var qf = config.QFirst;
-			var q0 = b = config.Q(0);
-			var p0 = config.P(0);
-			a = qf * q0 + p0;
+			var q0 = config.Q(0);
 			var q1 = config.Q(1);
+			var p0 = config.P(0);
 			var p1 = config.P(1);
-			a1 = (q0 * q1 + p1) * qf + p0 * q1;
-			b1 = q0 * q1 + p1;
 
-			//TODO don't really like QFirst solution
-			// would prefer to replace QFirst with
-			// a boolean to skip p0 instead
+			if (config.Form == PickForm.StartWithQ) {
+				a = q0;
+				b = 1;
+				a1 = q0 * q1 + p1;
+				b1 = q1;
+			}
+			else if (config.Form == PickForm.StartWithP) {
+				a = p0;
+				b = q0;
+				a1 = p0 * q1;
+				b1 = q0 * q1 + p1;
+			}
 		}
 
 		BigInteger k,a,b,a1,b1;

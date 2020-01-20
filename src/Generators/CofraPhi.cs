@@ -5,7 +5,8 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
-	// pn =   1 1 1 1 ... 1
+	// k  = 1 2 3 4 5
+	// pn = 1 1 1 1 1 ... 1
 	// qn = 1 1 1 1 1 ... 1
 
 	public class CofraPhi : AbstractCofra
@@ -25,6 +26,8 @@ namespace SequenceGen.Generators
 			return ONE;
 		}
 
-		public override BigInteger QFirst { get { return ONE; }}
+		public override PickForm Form { get {
+			return PickForm.StartWithQ;
+		}}
 	}
 }

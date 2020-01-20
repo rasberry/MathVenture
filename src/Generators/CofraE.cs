@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Numerics;
 
 namespace SequenceGen.Generators
-{
-	//pn =   1 1 2 3 ... k
-	//qn = 2 1 2 3 4 ... k+1
+{   //k  = 0 1 2 3 4
+	//pn =   1 1 2 3 ... k-1
+	//qn = 2 1 2 3 4 ... k
 
 	public class CofraE : AbstractCofra
 	{
@@ -19,15 +19,19 @@ namespace SequenceGen.Generators
 
 		public override BigInteger P(BigInteger k)
 		{
-			if (k == ZERO) { return ONE; }
-			return k;
+			//index 0 is skipped
+			if (k == ONE) { return ONE; }
+			return k - 1;
 		}
 
 		public override BigInteger Q(BigInteger k)
 		{
-			return k + ONE;
+			if (k == ZERO) { return TWO; }
+			return k;
 		}
 
-		public override BigInteger QFirst { get { return TWO; }}
+		public override PickForm Form { get {
+			return PickForm.StartWithQ;
+		}}
 	}
 }

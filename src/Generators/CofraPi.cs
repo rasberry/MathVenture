@@ -5,6 +5,7 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
+	//k  =  0  1  2  3  4
 	//pn =  4  1  4  9 16 ... k*k
 	//qn =  1  3  5  7  9 ... 2*k+1
 
@@ -29,6 +30,8 @@ namespace SequenceGen.Generators
 			return TWO * k + ONE;
 		}
 
-		public override BigInteger QFirst { get { return ZERO; }}
+		public override PickForm Form { get {
+			return PickForm.StartWithP;
+		}}
 	}
 }
