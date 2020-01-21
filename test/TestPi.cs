@@ -47,5 +47,10 @@ namespace test
 		public void CofraPi_16() {
 			TestCommon(new CofraPi { Base = 16 },16);
 		}
+
+		[TestMethod]
+		public void CofraPi_2() {
+			TestCommon(new CofraPi { Base = 2 },2);
+		}
 	}
 }

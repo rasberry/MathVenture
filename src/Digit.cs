@@ -4,20 +4,17 @@ namespace SequenceGen
 {
 	public struct Digit : IComparable<Digit>, IEquatable<Digit>
 	{
-		public Digit(int number, int @base = 10) : this((byte)number,(byte)@base)
-		{}
-
-		public Digit(byte number, byte @base = 10)
+		public Digit(int number, int @base = 10)
 		{
 			Base = @base;
 			if (number < 0 || number > @base - 1) {
-				throw new ArgumentOutOfRangeException($"Digit must be 0-{@base}");
+				throw new ArgumentOutOfRangeException($"Digit must be 0-{@base-1}");
 			}
 			Value = number;
 		}
 
-		readonly byte Value;
-		readonly byte Base;
+		readonly int Value;
+		readonly int Base;
 
 		public int CompareTo(Digit other) {
 			EnsureSameBase(other);
@@ -26,12 +23,6 @@ namespace SequenceGen
 		public bool Equals(Digit other) {
 			EnsureSameBase(other);
 			return this.Value.Equals(other.Value);
-		}
-		public static implicit operator byte(Digit d) {
-			return d.Value;
-		}
-		public static explicit operator Digit(byte b) {
-			return new Digit(b);
 		}
 		public static implicit operator int(Digit d) {
 			return (int)d.Value;

@@ -41,5 +41,20 @@ namespace SequenceGen
 				Generator = null;
 			}
 		}
+
+		public static IEnumerable<Digit> ConvertBase(int num, int destBase)
+		{
+			//find highest needed power of base (so we can output in bigendian)
+			double powHigh = Math.Floor(Math.Log(num,destBase)+1.0) - 1.0;
+			//track base^pow
+			long pow = (long)Math.Pow(destBase,powHigh);
+			
+			while(pow > 0) {
+				int fra = (int)(num / pow);
+				int rem = (int)(fra % destBase);
+				pow /= destBase;
+				yield return new Digit(rem,destBase);
+			}
+		}
 	}
 }

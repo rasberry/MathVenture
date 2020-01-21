@@ -13,4 +13,12 @@ namespace SequenceGen
 	{
 		int Base { get; set; }
 	}
+
+	public class GeneratorInfo
+	{
+		public string Name;
+		public string Info;
+		public Func<IGenerator> Make;
+		public int Index;
+	}
 }
