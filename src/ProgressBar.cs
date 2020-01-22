@@ -34,6 +34,7 @@ namespace SequenceGen
 
 		public string Prefix { get; set; } = null;
 		public Func<double,string> SuffixCallback { get; set; } = null;
+		public bool HideBar = false;
 
 		void TimerHandler(object state) {
 			lock (AnimTimer) {
@@ -47,13 +48,24 @@ namespace SequenceGen
 				if (SuffixCallback != null) {
 					Suffix = SuffixCallback(value);
 				}
-				string text = string.Format("{4}[{0}{1}] {2,3}% {3}{5}",
-					new string('#', progressBlockCount), new string('-', BlockCount - progressBlockCount),
-					percent,
-					AnimGliphs[AnimationIndex++ % AnimGliphs.Length],
-					Prefix ?? "",
-					Suffix ?? ""
-				);
+				string text = "";
+				if (HideBar) {
+					text = string.Format("{1} {0}{2}",
+						AnimGliphs[AnimationIndex++ % AnimGliphs.Length],
+						Prefix ?? "",
+						Suffix ?? ""
+					);
+				}
+				else {
+					text = string.Format("{4}[{0}{1}] {2,3}% {3}{5}",
+						new string('#', progressBlockCount),
+						new string('-', BlockCount - progressBlockCount),
+						percent,
+						AnimGliphs[AnimationIndex++ % AnimGliphs.Length],
+						Prefix ?? "",
+						Suffix ?? ""
+					);
+				}
 				UpdateText(text);
 				ResetTimer();
 			}

@@ -41,7 +41,8 @@ namespace SequenceGen
 			;
 			if (doStats) {
 				var prog = new ProgressBar {
-					SuffixCallback = PopSuffix
+					SuffixCallback = PopSuffix,
+					HideBar = Options.NoLimit
 				};
 				using(prog) {
 					OutputDigits(gen,prog);
@@ -101,7 +102,8 @@ namespace SequenceGen
 			//var mem = System.GC.GetTotalMemory(false) / 1048576.0;
 			var mem = ThisProc.PrivateMemorySize64 / 1048576.0;
 			var cpu = ThisProc.TotalProcessorTime / et * 100.0;
-			return $" {min}m {et.Seconds}s  {dps:0.0}dps  mem {mem:n2}MiB  avg cpu {cpu:n1}%";
+			string cnt = Options.NoLimit ? $"digits {digitCount:N0}  " : "";
+			return $" {cnt}{dps:0.0}dps  time {min}m {et.Seconds}s  mem {mem:n2}MiB  avg cpu {cpu:n1}%";
 		}
 	}
 }
