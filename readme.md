@@ -18,6 +18,8 @@ Options:
  -b (number)            Output number in given base (if generator supports it)
  -d (number)            Number of digits to print (default 1000)
  -d-                    Keep printing numbers until process is killed
+ -f (file)              Write digits to a file instead of standard out
+ -v                     Show progress bar and stats
  -n                     Insert newlines periodically
  -nw                    Number of characters between newlines (default 80)
 
@@ -32,3 +34,6 @@ Sequences:
 ```
 
 ## TODO ##
+* add stats output / progress bar
+  * finite number - progress bar, digits/sec, memory useage
+  * infite number - #of digits, digits/sec, memory usage
