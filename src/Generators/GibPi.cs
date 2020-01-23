@@ -10,7 +10,7 @@ namespace SequenceGen.Generators
 
 	public class GibPi : IGenerator, ICanHasBases
 	{
-		public GibPi() : base()
+		public GibPi()
 		{
 			Reset();
 		}

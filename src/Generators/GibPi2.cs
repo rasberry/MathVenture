@@ -9,7 +9,7 @@ namespace SequenceGen.Generators
 
 	public class GibPi2 : IGenerator
 	{
-		public GibPi2() : base()
+		public GibPi2()
 		{
 			Reset();
 		}

@@ -49,21 +49,26 @@ namespace SequenceGen
 				make = () => new GibPi2();
 				break;
 			case 4:
+				name = "BppPi";
+				info = "Expansion of pi using Bailey-Borwein-Plouffe method";
+				make = () => new BppPi();
+				break;
+			case 5:
 				name = "CofraE";
 				info = "Continued fraction expansion of e";
 				make = () => new CofraE();
 				break;
-			case 5:
+			case 6:
 				name = "CofraE2";
 				info = "Continued fraction expansion of e";
 				make = () => new CofraE2();
 				break;
-			case 6:
+			case 7:
 				name = "CofraPhi";
 				info = "Continued fraction expansion of phi";
 				make = () => new CofraPhi();
 				break;
-			case 7:
+			case 8:
 				name = "CofraSqrt2";
 				info = "Continued fraction expansion of Squre Root of 2";
 				make = () => new CofraSqrt2();

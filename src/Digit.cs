@@ -31,7 +31,13 @@ namespace SequenceGen
 			return new Digit(b);
 		}
 		public override string ToString() {
-			return Value.ToString();
+			if (Base <= 10 || Value < 10) {
+				return Value.ToString();
+			}
+			else if (Base <= 36) {
+				return new String((char)(Value + 0x57),1);
+			}
+			return "?";
 		}
 
 		void EnsureSameBase(Digit other) {
