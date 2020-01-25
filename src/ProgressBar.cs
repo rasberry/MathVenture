@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -35,6 +36,7 @@ namespace SequenceGen
 		public string Prefix { get; set; } = null;
 		public Func<double,string> SuffixCallback { get; set; } = null;
 		public bool HideBar = false;
+		static TextWriter Writer = Log.StdErr;
 
 		void TimerHandler(object state) {
 			lock (AnimTimer) {
@@ -93,7 +95,7 @@ namespace SequenceGen
 				outputBuilder.Append('\b', overlapCount);
 			}
 
-			Console.Error.Write(outputBuilder);
+			Writer.Write(outputBuilder);
 			CurrentText = text;
 		}
 

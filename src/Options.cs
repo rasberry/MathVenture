@@ -27,7 +27,7 @@ namespace SequenceGen
 			);
 			AppendSequences(sb);
 
-			Console.WriteLine(sb.ToString());
+			Log.Message(sb.ToString());
 		}
 
 		static void AppendSequences(StringBuilder sb)
@@ -123,7 +123,7 @@ namespace SequenceGen
 			return true;
 		}
 
-		static TextWriter Tw = Console.Error;
+		static TextWriter Tw = Log.StdErr;
 
 		public static int Base = 10;
 		public static bool NoLimit = false;

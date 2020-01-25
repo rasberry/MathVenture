@@ -63,7 +63,7 @@ namespace SequenceGen
 				}
 			}
 			else {
-				GenerateDigits(gen,Console.Out,prog);
+				GenerateDigits(gen,Log.StdOut,prog);
 			}
 		}
 

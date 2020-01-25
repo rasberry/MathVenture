@@ -5,6 +5,8 @@ using System.Numerics;
 
 namespace SequenceGen.Generators
 {
+	// https://www.experimentalmath.info/bbp-codes/
+
 	public class BppPi : IGenerator
 	{
 		public Digit Next { get {
@@ -50,6 +52,7 @@ namespace SequenceGen.Generators
 			s4 = Series(6, id);
 			pid = 4.0 * s1 - 2.0 * s2 - s3 - s4;
 			pid = pid - (int) pid + 1.0;
+			// Log.Debug($"s1={s1} s2={s2} s3={s3} s4={s4} pid={pid}");
 			return IHex(pid, NHX);
 		}
 
@@ -97,32 +100,16 @@ namespace SequenceGen.Generators
 		// exponentiation scheme.
 		static double Expm(double p, double ak)
 		{
-			int i, j;
-			double p1, pt, r;
-			const int ntp = 25;
-			double[] tp = new double[ntp];
-			int tp1 = 0;
+			if (ak == 1.0) { return 0.0; }
 
-			// If this is the first call to expm, fill the power of two table tp.
-			if (tp1 == 0) {
-				tp1 = 1;
-				tp[0] = 1.0;
-				for (i = 1; i < ntp; i++) {
-					tp[i] = 2.0 * tp[i-1];
-				}
-			}
-			if (ak == 1.0) return 0.0;
-
+			double p1 = p, r = 1.0;
 			// Find the greatest power of two less than or equal to p.
-			for (i = 0; i < ntp; i++) {
-				if (tp[i] > p) { break; }
-			}
-			pt = tp[i-1];
-			p1 = p;
-			r = 1.0;
+			int i = (int)Math.Log(p,2);
+			double pt = Math.Pow(2,i);
+			i++;
 
 			// Perform binary exponentiation algorithm modulo ak.
-			for (j = 1; j <= i; j++) {
+			for (int j = 1; j <= i; j++) {
 				if (p1 >= pt) {
 					r = 16.0 * r;
 					r = r - (int)(r / ak) * ak;
@@ -134,6 +121,7 @@ namespace SequenceGen.Generators
 					r = r - (int)(r / ak) * ak;
 				}
 			}
+			// Log.Debug($"p={p} ak={ak} r={r}");
 			return r;
 		}
 	}
