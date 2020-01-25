@@ -6,6 +6,7 @@ using System.Numerics;
 namespace SequenceGen.Generators
 {
 	// https://www.experimentalmath.info/bbp-codes/
+	// https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
 
 	public class BppPi : IGenerator
 	{
@@ -72,7 +73,7 @@ namespace SequenceGen.Generators
 		// using the modular exponentiation technique.
 		static double Series(int m, int id)
 		{
-			double ak, p, t;
+			double t,p,ak;
 			const double eps = 1e-17;
 			double s = 0.0;
 
@@ -80,7 +81,7 @@ namespace SequenceGen.Generators
 			for (int k = 0; k < id; k++) {
 				ak = 8 * k + m;
 				p = id - k;
-				t = Expm(p, ak);
+				t = ModPow(p, ak);
 				s = s + t / ak;
 				s = s - (int) s;
 			}
@@ -98,7 +99,8 @@ namespace SequenceGen.Generators
 
 		// expm = 16^p mod ak.  This routine uses the left-to-right binary
 		// exponentiation scheme.
-		static double Expm(double p, double ak)
+		// https://en.wikipedia.org/wiki/Modular_exponentiation
+		static double ModPow(double p, double ak)
 		{
 			if (ak == 1.0) { return 0.0; }
 
@@ -106,10 +108,9 @@ namespace SequenceGen.Generators
 			// Find the greatest power of two less than or equal to p.
 			int i = (int)Math.Log(p,2);
 			double pt = Math.Pow(2,i);
-			i++;
 
 			// Perform binary exponentiation algorithm modulo ak.
-			for (int j = 1; j <= i; j++) {
+			for (int j = 0; j <= i; j++) {
 				if (p1 >= pt) {
 					r = 16.0 * r;
 					r = r - (int)(r / ak) * ak;
