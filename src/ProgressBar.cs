@@ -4,13 +4,13 @@ using System.Text;
 using System.Threading;
 
 // https://gist.github.com/DanielSWolf/0ab6a96899cc5377bf54
-namespace SequenceGen
+namespace MathVenture
 {
 	/// <summary>
 	/// An ASCII progress bar
 	/// </summary>
-	public class ProgressBar : IDisposable, IProgress<double> {
-
+	public class ProgressBar : IDisposable, IProgress<double>
+	{
 		public void Dispose() {
 			lock (AnimTimer) {
 				Disposed = true;
@@ -21,12 +21,12 @@ namespace SequenceGen
 		public ProgressBar() {
 			AnimTimer = new Timer(TimerHandler);
 
-			//// A progress bar is only for temporary display in a console window.
-			//// If the console output is redirected to a file, draw nothing.
-			//// Otherwise, we'll end up with a lot of garbage in the target file.
-			//if (!Console.IsOutputRedirected) {
-			ResetTimer();
-			//}
+			// A progress bar is only for temporary display in a console window.
+			// If the console output is redirected to a file, draw nothing.
+			// Otherwise, we'll end up with a lot of garbage in the target file.
+			if (!Console.IsErrorRedirected) {
+				ResetTimer();
+			}
 		}
 
 		public void Report(double value) {
@@ -40,7 +40,7 @@ namespace SequenceGen
 
 		void TimerHandler(object state) {
 			lock (AnimTimer) {
-				if (Disposed) return;
+				if (Disposed) { return; }
 
 				// Make sure value is in [0..1] range
 				double value = Math.Max(0, Math.Min(1, CurrentProgress));

@@ -1,6 +1,6 @@
 using System;
 
-namespace SequenceGen
+namespace MathVenture.SequenceGen
 {
 	public struct Digit : IComparable<Digit>, IEquatable<Digit>
 	{

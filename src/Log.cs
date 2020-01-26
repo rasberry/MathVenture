@@ -1,9 +1,8 @@
 using System;
 using System.IO;
 using System.Text;
-using SequenceGen.Generators;
 
-namespace SequenceGen
+namespace MathVenture
 {
 	public static class Log
 	{

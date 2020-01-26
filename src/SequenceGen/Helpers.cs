@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace SequenceGen
+namespace MathVenture.SequenceGen
 {
 	public static class Helpers
 	{

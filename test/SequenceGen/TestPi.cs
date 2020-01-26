@@ -1,26 +1,19 @@
 using System;
 using System.IO;
+using MathVenture.SequenceGen;
+using MathVenture.SequenceGen.Generators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SequenceGen.Generators;
 
-namespace test
+namespace test.SequenceGen
 {
 	[TestClass]
 	public class TestPi
 	{
-		void TestCommon(SequenceGen.IGenerator gen, int @base = 10)
+		void TestCommon(IGenerator gen, int @base = 10)
 		{
 			int max = 1000;
-			string path = Path.Join(Helpers.ProjectRoot,$"test/data/pi-base{@base}.txt");
-			var fil = Helpers.ReadDigitsFromFile(path,@base);
-			var fig = fil.GetEnumerator();
-			while(--max > 0) {
-				var o = gen.Next;
-				fig.MoveNext();
-				var t = fig.Current;
-				// Console.WriteLine($"o={o} t={t} o==t {o.Equals(t)}");
-				Assert.AreEqual(o,t);
-			}
+			string file = $"pi-base{@base}.txt";
+			Helpers.CompareSequence(max,file,@base,gen);
 		}
 
 		[TestMethod]

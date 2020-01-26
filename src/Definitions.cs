@@ -1,24 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Text;
 
-namespace SequenceGen
+namespace MathVenture
 {
-	public interface IGenerator
+	public interface IMain
 	{
-		Digit Next { get; }
-		void Reset();
-	}
-
-	public interface ICanHasBases
-	{
-		int Base { get; set; }
-	}
-
-	public class GeneratorInfo
-	{
-		public string Name;
-		public string Info;
-		public Func<IGenerator> Make;
-		public int Index;
+		void Usage(StringBuilder sb);
+		bool ParseArgs(string[] args);
+		void Main();
 	}
 }

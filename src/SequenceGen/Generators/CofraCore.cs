@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace SequenceGen.Generators
+namespace MathVenture.SequenceGen.Generators
 {
 	//Choose one from to use
 	//StartWithP

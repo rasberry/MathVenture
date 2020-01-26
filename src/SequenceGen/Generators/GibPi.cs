@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace SequenceGen.Generators
+namespace MathVenture.SequenceGen.Generators
 {
 	// https://www.cs.ox.ac.uk/jeremy.gibbons/publications/spigot.pdf
 	// https://rosettacode.org/wiki/Pi

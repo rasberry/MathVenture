@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace SequenceGen.Generators
+namespace MathVenture.SequenceGen.Generators
 {
 	// k  = 0 1 2 3 4
 	// pn = 1 1 1 1 1 ... 1

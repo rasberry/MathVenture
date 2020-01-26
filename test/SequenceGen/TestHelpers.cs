@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MathVenture.SequenceGen;
 
-namespace test
+namespace test.SequenceGen
 {
 	[TestClass]
 	public class TestHelpers
@@ -28,11 +29,11 @@ namespace test
 
 		static bool TestConvert(int num, int @base, IEnumerable<int> result)
 		{
-			var conv = SequenceGen.Helpers.ConvertBase(num,@base);
+			var conv = MathVenture.SequenceGen.Helpers.ConvertBase(num,@base);
 			return Matches(conv,result);
 		}
 
-		static bool Matches(IEnumerable<SequenceGen.Digit> digits, IEnumerable<int> test)
+		static bool Matches(IEnumerable<Digit> digits, IEnumerable<int> test)
 		{
 			var checkList = test.GetEnumerator();
 			foreach(var d in digits) {

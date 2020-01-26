@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using SequenceGen;
+using MathVenture.SequenceGen;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace test
+namespace test.SequenceGen
 {
 	public static class Helpers
 	{
@@ -37,23 +38,18 @@ namespace test
 			}
 		}
 
-		public static string ProjectRoot { get
+		public static void CompareSequence(int max, string dataFile, int @base, IGenerator gen)
 		{
-			if (RootFolder == null) {
-				string root = AppContext.BaseDirectory;
-				int i=40;
-				while(--i > 0) {
-					string f = new DirectoryInfo(root).Name;
-					if (string.Equals(f,nameof(SequenceGen),StringComparison.CurrentCultureIgnoreCase)) {
-						break;
-					} else {
-						root = new Uri(Path.Combine(root,"..")).LocalPath;
-					}
-				}
-				RootFolder = root;
+			string path = Path.Join(Aids.ProjectRoot,$"test/data/{dataFile}");
+			var fil = Helpers.ReadDigitsFromFile(path,@base);
+			var fig = fil.GetEnumerator();
+			while(--max > 0) {
+				var o = gen.Next;
+				fig.MoveNext();
+				var t = fig.Current;
+				// Console.WriteLine($"o={o} t={t} o==t {o.Equals(t)}");
+				Assert.AreEqual(o,t);
 			}
-			return RootFolder;
-		}}
-		static string RootFolder = null;
+		}
 	}
 }

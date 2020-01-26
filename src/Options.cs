@@ -1,136 +1,98 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Text;
-using SequenceGen.Generators;
 
-namespace SequenceGen
+namespace MathVenture
 {
 	public static class Options
 	{
-		public static void Usage()
+		public static void Usage(PickAspect aspect = PickAspect.None)
 		{
-			var sb = new StringBuilder();
-			sb.Append(""
-				+"\n"+nameof(SequenceGen) + " (sequence) [options]"
-				+"\nOptions:"
-				+"\n -h / --help            Show this help"
-				+"\n -b (number)            Output number in given base (if generator supports it)"
-				+"\n -d (number)            Number of digits to print (default 1000)"
-				+"\n -d-                    Keep printing numbers until process is killed"
-				+"\n -f (file)              Write digits to a file instead of standard out"
-				+"\n -v                     Show progress bar and stats"
-				+"\n -n                     Insert newlines periodically"
-				+"\n -nw                    Number of characters between newlines (default 80)"
-				+"\n"
-				+"\nSequences:"
-				+"\n"
-			);
-			AppendSequences(sb);
+			StringBuilder sb = new StringBuilder();
+			string name = nameof(MathVenture);
+			sb
+				.WL(0,$"Usage {name} (aspect) [options]")
+				.WL(0,"Options:")
+				.WL(1,"-h / --help","Show full help")
+				.WL(1,"(aspect) -h","Aspect specific help")
+				.WL(1,"--aspects"  ,"List possible aspects")
+			;
+			
+			if (ShowFullHelp)
+			{
+				foreach(PickAspect a in Aids.EnumAll<PickAspect>()) {
+					IMain func = Registry.Map(a);
+					func.Usage(sb);
+				}
+			}
+			else if (aspect != PickAspect.None)
+			{
+				IMain func = Registry.Map(aspect);
+				func.Usage(sb);
+			}
+			else
+			{
+				if (ShowHelpAspects) {
+					sb
+						.WL()
+						.WL(0,"Aspects:")
+						.PrintEnum<PickAspect>(1)
+					;
+				}
+			}
 
 			Log.Message(sb.ToString());
 		}
 
-		static void AppendSequences(StringBuilder sb)
+		public static bool Parse(string[] args, out string[] prunedArgs)
 		{
-			foreach(var gi in Registry.InfoList())
-			{
-				int len = gi.Index.ToString().Length + gi.Name.Length;
-				string pad = new String(' ',21 - len);
-				sb.AppendLine($" {gi.Index}. {gi.Name}{pad}{gi.Info}");
-			}
-		}
+			prunedArgs = null;
+			var pArgs = new List<string>();
 
-		public static bool Parse(string[] args)
-		{
 			int len = args.Length;
-			for(int a=0; a<len; a++)
-			{
+			for(int a=0; a<len; a++) {
 				string curr = args[a];
 				if (curr == "-h" || curr == "--help") {
-					Usage();
-					return false;
-				}
-				else if (curr == "-b" && ++a < len) {
-					if (!int.TryParse(args[a], out int @base)) {
-						Tw.WriteLine($"Cannot parse '{args[a]}' as a number");
-						return false;
-					}
-					if (@base < 2) {
-						Tw.WriteLine("Base cannot be less than 2");
-						return false;
-					}
-					Base = @base;
-				}
-				else if (curr == "-d-") {
-					NoLimit = true;
-				}
-				else if (curr == "-d" && ++a < len) {
-					if (!long.TryParse(args[a], out long limit)) {
-						Tw.WriteLine($"Cannot parse '{args[a]}' as a number");
-						return false;
-					}
-					if (limit < 1) {
-						Tw.WriteLine("Limit must be greater than zero");
-						return false;
-					}
-					Limit = limit;
-				}
-				else if (curr == "-n") {
-					OutputWidth = 80;
-				}
-				else if (curr == "-nw" && ++a < len) {
-					if (!int.TryParse(args[a],out int w)) {
-						Tw.WriteLine($"Cannot parse '{args[a]}' as a number");
-						return false;
-					}
-					if (w < 1) {
-						Tw.WriteLine("Width must be greater than zero");
-						return false;
-					}
-					OutputWidth = w;
-				}
-				else if (curr == "-f" && ++a < len) {
-					if (String.IsNullOrWhiteSpace(args[a])) {
-						Tw.WriteLine("Invalid file name");
-						return false;
-					}
-					OutputFile = args[a];
-				}
-				else if (curr == "-v") {
-					ShowStats = true;
-				}
-				else if (Selected == null) {
-					GeneratorInfo gi = null;
-					if (int.TryParse(curr,out int index)) {
-						gi = Registry.FindByIndex(index);
+					if (Aspect == PickAspect.None) {
+						ShowFullHelp = true;
 					}
 					else {
-						gi = Registry.FindByName(curr);
+						ShowHelpAspects = true;
 					}
-					if (gi == null) {
-						Tw.WriteLine($"Cannot find sequence generator '{curr}'");
+				}
+				else if (curr == "--aspects") {
+					ShowHelpAspects = true;
+				}
+				else if (Aspect == PickAspect.None) {
+					PickAspect which;
+					if (!Aids.TryParse<PickAspect>(curr,out which)) {
+						Log.Error("unkown action \""+curr+"\"");
 						return false;
 					}
-					Selected = gi;
+					Aspect = which;
+				}
+				else {
+					pArgs.Add(curr);
 				}
 			}
 
-			if (Selected == null) {
-				Tw.WriteLine("No generator selected");
+			if (ShowFullHelp || ShowHelpAspects) {
+				Usage(Aspect);
 				return false;
 			}
 
+			if (Aspect == PickAspect.None) {
+				Log.Error("aspect was not specified");
+				return false;
+			}
+
+			prunedArgs = pArgs.ToArray();
 			return true;
 		}
 
-		static TextWriter Tw = Log.StdErr;
+		public static bool ShowFullHelp = false;
+		public static bool ShowHelpAspects = false;
+		public static PickAspect Aspect = PickAspect.None;
 
-		public static int Base = 10;
-		public static bool NoLimit = false;
-		public static long Limit = 1000;
-		public static GeneratorInfo Selected = null;
-		public static int OutputWidth = -1;
-		public static string OutputFile = null;
-		public static bool ShowStats = false;
 	}
 }
