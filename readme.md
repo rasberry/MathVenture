@@ -10,6 +10,7 @@ Options:
  --aspects                    List possible aspects
 
 1. SequenceGen (sequence) [options]
+ A set of algorithms that can continuously produce digits of infinite series
 Options:
  -b (number)                  Output number in given base (if generator supports it)
  -d (number)                  Number of digits to print (default 1000)

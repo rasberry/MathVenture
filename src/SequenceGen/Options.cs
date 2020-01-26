@@ -14,6 +14,7 @@ namespace MathVenture.SequenceGen
 			sb
 				.WL()
 				.WL(0,$"{name} (sequence) [options]")
+				.WL(1,"A set of algorithms that can continuously produce digits of infinite series")
 				.WL(0,"Options:")
 				.WL(1,"-b (number)","Output number in given base (if generator supports it)")
 				.WL(1,"-d (number)","Number of digits to print (default 1000)")
