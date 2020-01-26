@@ -1,8 +1,36 @@
-# SequenceGen #
-Playground for number sequence generators. The main motivation is to experiment with
-algorithms that can continuously produce digits of infinite series.
+# MathVenture #
+A Collection of math projects.
 
+## Usage ##
+```
+Usage MathVenture (aspect) [options]
+Options:
+ -h / --help                  Show full help
+ (aspect) -h                  Aspect specific help
+ --aspects                    List possible aspects
+
+1. SequenceGen (sequence) [options]
+Options:
+ -b (number)                  Output number in given base (if generator supports it)
+ -d (number)                  Number of digits to print (default 1000)
+ -d-                          Keep printing numbers until process is killed
+ -f (file)                    Write digits to a file instead of standard out
+ -v                           Show progress bar and stats
+ -n                           Insert newlines periodically
+ -nw                          Number of characters between newlines (default 80)
+
+Sequences:
+ 1. CofraPi                   Continued fraction expansion of pi
+ 2. GibPi                     Expansion of pi using Gibbons spigot method
+ 3. GibPi2                    Expansion of pi using Gibbons spigot method
+ 4. BppPi                     Expansion of pi using Bailey-Borwein-Plouffe method
+ 5. CofraE                    Continued fraction expansion of e
+ 6. CofraE2                   Continued fraction expansion of e
+ 7. CofraPhi                  Continued fraction expansion of phi
+ 8. CofraSqrt2                Continued fraction expansion of Squre Root of 2
+```
 ## References ###
+### SequenceGen ###
 1. Neal R. Wagner, "pi by continued fraction, how it works"
    http://www.cs.utsa.edu/~wagner/pi/ruby/pi_works.html
 1. Jeremy Gibbons, "Unbounded Spigot Algorithms for the Digits of Pi"
@@ -17,29 +45,5 @@ algorithms that can continuously produce digits of infinite series.
    http://numbers.computation.free.fr/Constants/PiProgram/pifast.html
 1. David H. Bailey, "BBP Code Directory"
    https://www.experimentalmath.info/bbp-codes/
-
-## Usage ##
-```
-SequenceGen (sequence) [options]
-Options:
- -h / --help            Show this help
- -b (number)            Output number in given base (if generator supports it)
- -d (number)            Number of digits to print (default 1000)
- -d-                    Keep printing numbers until process is killed
- -f (file)              Write digits to a file instead of standard out
- -v                     Show progress bar and stats
- -n                     Insert newlines periodically
- -nw                    Number of characters between newlines (default 80)
-
-Sequences:
- 1. CofraPi             Continued fraction expansion of pi
- 2. GibPi               Expansion of pi using Gibbons spigot method
- 3. GibPi2              Expansion of pi using Gibbons spigot method
- 4. BppPi               Expansion of pi using Bailey-Borwein-Plouffe method
- 5. CofraE              Continued fraction expansion of e
- 6. CofraE2             Continued fraction expansion of e
- 7. CofraPhi            Continued fraction expansion of phi
- 8. CofraSqrt2          Continued fraction expansion of Squre Root of 2
-```
 
 ## TODO ##
