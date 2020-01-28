@@ -47,4 +47,8 @@ Sequences:
 1. David H. Bailey, "BBP Code Directory"
    https://www.experimentalmath.info/bbp-codes/
 
+### AltMath ###
+1. Ian Logan; Frank O'Hara, "The Complete Spectrum ROM Disassembly"
+   http://freestuff.grok.co.uk/rom-dis/
+
 ## TODO ##

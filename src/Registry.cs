@@ -5,7 +5,8 @@ namespace MathVenture
 	public enum PickAspect
 	{
 		None = 0,
-		SequenceGen = 1
+		SequenceGen = 1,
+		AltMat = 2
 	}
 
 	public static class Registry
@@ -16,6 +17,8 @@ namespace MathVenture
 			{
 			case PickAspect.SequenceGen:
 				return new SequenceGen.Start();
+			case PickAspect.AltMat:
+				return new AltMath.Start();
 			}
 
 			return null;

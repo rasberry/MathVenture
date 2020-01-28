@@ -13,7 +13,7 @@ namespace test
 				int i=40;
 				while(--i > 0) {
 					string f = new DirectoryInfo(root).Name;
-					if (string.Equals(f,nameof(MathVenture),StringComparison.CurrentCultureIgnoreCase)) {
+					if (string.Equals(f,nameof(MathVenture),StringComparison.InvariantCultureIgnoreCase)) {
 						break;
 					} else {
 						root = new Uri(Path.Combine(root,"..")).LocalPath;
