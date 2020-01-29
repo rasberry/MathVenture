@@ -7,7 +7,7 @@ namespace MathVenture.AltMath
 	{
 		public static IEnumerable<FunctionInfo> InfoList()
 		{
-			int index = -1;
+			int index = 0;
 			yield return new FunctionInfo {
 				Index = ++index, Name = "CordicSin",
 				Args = "(number:angle) [number:accuracy=8]",
@@ -63,6 +63,14 @@ namespace MathVenture.AltMath
 				Signature = PickSignature.DoubleDouble,
 				Class = PickClass.Sin,
 				Func = (Func<double,double>)Sine.SinSO
+			};
+			yield return new FunctionInfo {
+				Index = ++index, Name = "SinSO2",
+				Args = "(number:angle)",
+				Info = "Sin function from Stack Overflow 'How does C compute sin() and other math functions?'",
+				Signature = PickSignature.DoubleDouble,
+				Class = PickClass.Sin,
+				Func = (Func<double,double>)Sine.SinSO2
 			};
 			yield return new FunctionInfo {
 				Index = ++index, Name = "SinTaylor",
