@@ -84,7 +84,6 @@ namespace test.AltMath
 
 			yield return new TestItem { Delta = 3.30773444231687, Name = nameof(Sine.Sin6)+"-32",
 				Method = Pack((double a) => Sine.Sin6(a,32)) };
-
 		}
 
 		public static IEnumerable<object[]> SinGetData()
