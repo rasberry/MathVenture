@@ -45,11 +45,11 @@ namespace MathVenture.AltMath
 
 		public static double Sin(double beta, int accuracy = 8)
 		{
-			return SinCos(beta,accuracy).Item1;
+			return SinCos(beta,accuracy).Item2;
 		}
 		public static double Cos(double beta, int accuracy = 8)
 		{
-			return SinCos(beta,accuracy).Item2;
+			return SinCos(beta,accuracy).Item1;
 		}
 
 		//bfloat(atan(2^-n)); n=[0,27]
