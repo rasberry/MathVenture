@@ -27,8 +27,6 @@ namespace MathVenture.SequenceGen
 				.WL(0,"Sequences:")
 			;
 			AppendSequences(sb);
-
-			Log.Message(sb.ToString());
 		}
 
 		static void AppendSequences(StringBuilder sb)

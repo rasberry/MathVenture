@@ -23,8 +23,6 @@ namespace MathVenture.AltMath
 				.WL(0,"Functions:")
 			;
 			ListFuntions(sb);
-
-			Log.Message(sb.ToString());
 		}
 
 		static void ListFuntions(StringBuilder sb)

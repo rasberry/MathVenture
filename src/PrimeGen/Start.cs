@@ -68,10 +68,12 @@ namespace MathVenture.PrimeGen
 		{
 			var bits = new BitsEratosthenes();
 			bits.FillPrimes(0);
+			//TODO finish
 		}
 
 		static void DoBitsImg()
 		{
+			//TODO finish
 		}
 	}
 }

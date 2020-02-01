@@ -23,31 +23,31 @@ namespace MathVenture.PrimeGen
 				.WL(1,"-s (number)","Starting number for the generator (default 2)")
 				.WL(1,"-e (number)","Ending number for the generator (default 100)")
 				.WL(1,"-f (file)"  ,"Optional text file to store primes")
-				.WL()
-				.WL(0,"bits"       ,"Generate array of bits with primes as 1s and composites as 0s")
-				.WL(1,"-t (type)"  ,"Type of generator to use (leave empty to list the types)")
-				.WL(1,"-s (number)","Starting number for the generator (default 2)")
-				.WL(1,"-e (number)","Ending number for the generator (default 100) or use -l")
-				.WL(1,"-l (size)"  ,"Target size of file. can specify K/M/G/T/E suffixes or use -e")
-				.WL(1,"-f (file)"  ,"File to store the bits")
-				.WL()
-				.WL(0,"bitsimg"    ,"Generate an image using the prime number bit array process")
-				.WL(1,"-t (type)"  ,"Type of generator to use (leave empty to list the types)")
-				.WL(1,"-s (number)","Starting number for the generator (default 2)")
-				.WL(1,"-d (w) (h)" ,"Dimensions of the image (width and height)")
-				.WL(1,"-c (number)","Bits per color between 1 and 48 (default 1)")
-				.WL(1,"-p (file)"  ,"Color palette file to use for coloring")
-				.WL(1,"-f (file)"  ,"File to store image")
+				//.WL()
+				//.WL(0,"bits"       ,"Generate array of bits with primes as 1s and composites as 0s")
+				//.WL(1,"-t (type)"  ,"Type of generator to use (leave empty to list the types)")
+				//.WL(1,"-s (number)","Starting number for the generator (default 2)")
+				//.WL(1,"-e (number)","Ending number for the generator (default 100) or use -l")
+				//.WL(1,"-l (size)"  ,"Target size of file. can specify K/M/G/T/E suffixes or use -e")
+				//.WL(1,"-f (file)"  ,"File to store the bits")
+				//.WL()
+				//.WL(0,"bitsimg"    ,"Generate an image using the prime number bit array process")
+				//.WL(1,"-t (type)"  ,"Type of generator to use (leave empty to list the types)")
+				//.WL(1,"-s (number)","Starting number for the generator (default 2)")
+				//.WL(1,"-d (w) (h)" ,"Dimensions of the image (width and height)")
+				//.WL(1,"-c (number)","Bits per color between 1 and 48 (default 1)")
+				//.WL(1,"-p (file)"  ,"Color palette file to use for coloring")
+				//.WL(1,"-f (file)"  ,"File to store image")
 			;
 		}
 
 		static void ShowAllTypes()
 		{
-			Console.WriteLine("\nTypes for 'gen':");
+			Log.Message("\nTypes for 'gen':");
 			ShowTypes<GenType>("gen");
-			Console.WriteLine("\nTypes for 'bits':");
+			Log.Message("\nTypes for 'bits':");
 			ShowTypes<BitsType>("bits");
-			Console.WriteLine("\nTypes for 'bitsimg':");
+			Log.Message("\nTypes for 'bitsimg':");
 			ShowTypes<BitsImgType>("bitsimg");
 		}
 
@@ -55,7 +55,7 @@ namespace MathVenture.PrimeGen
 		{
 			foreach(string n in Enum.GetNames(typeof(T))) {
 				if (n == "None") { continue; }
-				Console.WriteLine(" "+n);
+				Log.Message(" "+n);
 			}
 		}
 
