@@ -29,6 +29,38 @@ Sequences:
  6. CofraE2                   Continued fraction expansion of e
  7. CofraPhi                  Continued fraction expansion of phi
  8. CofraSqrt2                Continued fraction expansion of Squre Root of 2
+
+2. AltMat (function) [number] [options]
+ Implementations of some math functions using various numeric methods
+Options:
+ -b (number)                  Series start number
+ -e (number)                  Series end number
+ -s (number)                  Series step amount
+ -a (number)                  Accuracy (for functions that support it)
+ -io                          Print both input and output
+
+Functions:
+  1. CordicSin                Sin using CORDIC (for COordinate Rotation DIgital Computer)
+  2. CordicCos                Cos using CORDIC (for COordinate Rotation DIgital Computer)
+  3. SpecrumSin               ZX Spectrum Calculator SIN X function
+  4. Sin5                     Sin using Chebyshev mapping method
+  5. Sin6                     Sin using Geometric Product expansion sin(x) = x*PROD(k=[1,Inf](1-(x/(k*PI)^2)))
+  6. SinFdlibm                Sin function from fdlibm/k_sin.c
+  7. SinSO                    Sin function from Stack Overflow 'How does C compute sin() and other math functions?'
+  8. SinSO2                   Sin function from Stack Overflow 'How does C compute sin() and other math functions?'
+  9. SinTaylor                Sin function using trucated taylor series
+ 10. SinXupremZero            Sin function by XupremZero
+ 11. CosXupremZero            Cos function by XupremZero
+
+3. PrimeGen (gen|bits|bitsimg) [options]
+ --debug                      Show debug messages (implies -v)
+ -v                           Show extra information
+
+gen                           Generates a sequence of prime numbers and outputs one per line
+ -t (type)                    Type of generator to use (leave empty to list the types)
+ -s (number)                  Starting number for the generator (default 2)
+ -e (number)                  Ending number for the generator (default 100)
+ -f (file)                    Optional text file to store primes
 ```
 ## References ###
 ### SequenceGen ###
@@ -50,5 +82,13 @@ Sequences:
 ### AltMath ###
 1. Ian Logan; Frank O'Hara, "The Complete Spectrum ROM Disassembly"
    http://freestuff.grok.co.uk/rom-dis/
+
+### PrimeGen ###
+1. "The AKS "PRIMES in P" Algorithm Resource"
+   http://fatphil.org/maths/AKS/#Implementations
+1. Phillip Mates, "3 Primality Proving Implementations: ECPP, AKS, and a hybrid of the two"
+   https://github.com/philomates/ecpp-aks-primality-proving
+1. Futility Closet, "Pascal’s Primes"
+   https://www.futilitycloset.com/2015/12/29/pascals-primes/
 
 ## TODO ##

@@ -24,7 +24,7 @@ namespace bench
 
 		static void DoTest(ITestItemProvider provider, TestItem item,Func<TestItem,double> test)
 		{
-			double acc = test.Invoke(item);
+			double acc = test == null ? 0.0 : test.Invoke(item);
 
 			var sw = Stopwatch.StartNew();
 			provider.SpeedTest(item);

@@ -356,3 +356,4 @@ MigrationBackup/
 .vscode
 stuff
 /*.txt
+*.sqlite3

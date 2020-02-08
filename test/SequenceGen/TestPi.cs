@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using MathVenture.SequenceGen;
 using MathVenture.SequenceGen.Generators;
@@ -7,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace test.SequenceGen
 {
 	[TestClass]
-	public class TestPi
+	public class TestPi : ITestItemProvider
 	{
 		void TestCommon(IGenerator gen, int @base = 10)
 		{
@@ -49,6 +50,43 @@ namespace test.SequenceGen
 		[TestMethod]
 		public void BppPi() {
 			TestCommon(new BppPi(),16);
+		}
+
+		public double SpeedTest(TestItem testItem)
+		{
+			return Helpers.SpeedTest(testItem);
+		}
+
+		public IEnumerable<(TestItem, Func<TestItem, double>)> GetItems()
+		{
+			yield return (new TestItem {
+				Name = nameof(GibPi),
+				Method = Helpers.Pack(new GibPi())
+			},null);
+			yield return (new TestItem {
+				Name = nameof(GibPi)+"-16",
+				Method = Helpers.Pack(new GibPi { Base = 16 })
+			},null);
+			yield return (new TestItem {
+				Name = nameof(GibPi2),
+				Method = Helpers.Pack(new GibPi2())
+			},null);
+			yield return (new TestItem {
+				Name = nameof(CofraPi),
+				Method = Helpers.Pack(new CofraPi())
+			},null);
+			yield return (new TestItem {
+				Name = nameof(CofraPi)+"-16",
+				Method = Helpers.Pack(new CofraPi { Base = 16 })
+			},null);
+			yield return (new TestItem {
+				Name = nameof(CofraPi)+"-2",
+				Method = Helpers.Pack(new CofraPi { Base = 2})
+			},null);
+			yield return (new TestItem {
+				Name = nameof(BppPi),
+				Method = Helpers.Pack(new BppPi())
+			},null);
 		}
 	}
 }
