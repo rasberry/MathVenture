@@ -81,6 +81,7 @@ namespace MathVenture.PrimeGen
 			_store = PrimeStore.Self;
 		}
 
+		//BigInteger doesn't have a built-in sqrt function
 		static BigInteger Sqrt(BigInteger n)
 		{
 			if (n == 0 || n == 1) { return n; }

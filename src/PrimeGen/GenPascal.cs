@@ -20,14 +20,14 @@ namespace MathVenture.PrimeGen
 			while(!isPrime)
 			{
 				isPrime = true;
-				BigInteger mid = test/2;
+				BigInteger mid = test / 2;
 				BigInteger last = test;
 				for(BigInteger p=2; p<mid; p++)
 				{
 					//https://en.wikipedia.org/wiki/Pascal's_triangle#Calculating_a_row_or_diagonal_by_itself
 					BigInteger num = last * (test + 1 - p) / p;
 					//wrong -- BigInteger num = last * ((test + 1) / p - 1);
-					//BigInteger num = (test + 1 - p) * last / p;
+					//slow  -- BigInteger num = (test + 1 - p) * last / p;
 					//hangs -- BigInteger num = last / p * (test + 1 - p);
 					last = num;
 

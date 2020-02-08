@@ -25,6 +25,7 @@ namespace MathVenture.PrimeGen
 			case ActionType.Gen:     DoGen(); break;
 			case ActionType.Bits:    DoBits(); break;
 			case ActionType.BitsImg: DoBitsImg(); break;
+			case ActionType.Test:    DoTest(); break;
 			}
 		}
 
@@ -38,6 +39,9 @@ namespace MathVenture.PrimeGen
 				break;
 			case GenType.Pascal:
 				gen = new GenPascal();
+				break;
+			case GenType.Fermat:
+				gen = new GenFermat();
 				break;
 			}
 
@@ -74,6 +78,42 @@ namespace MathVenture.PrimeGen
 		static void DoBitsImg()
 		{
 			//TODO finish
+		}
+
+		static void DoTest()
+		{
+			//var gen = new GenDivision();
+			//// var gen = new GenFermat() { Power = 3 };
+			//BigInteger n = 1;
+			//for(int i=0; i<100; i++) {
+			//	n = gen.NextPrime(n);
+			//	Console.WriteLine(n);
+			//}
+			//return;
+			
+			//#if false
+			for(int i=2; i<100; i++) {
+				var gControl = new GenDivision();
+				var gFermat = new GenFermat() { Power = i };
+
+				BigInteger next = 1;
+				int liars = 10;
+				Console.Write($"{i}");
+				while(liars >= 0) {
+					var con = gControl.NextPrime(next);
+					var fer = gFermat.NextPrime(next);
+					while (con < fer) {
+						con = gControl.NextPrime(con);
+					}
+					if (con != fer) {
+						Console.Write($"\t{fer}");
+						liars--;
+					}
+					next = fer;
+				}
+				Console.WriteLine();
+			}
+			//#endif
 		}
 	}
 }

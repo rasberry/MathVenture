@@ -212,6 +212,9 @@ namespace MathVenture.PrimeGen
 				}
 				//TODO figure out color depth for image based on BitsPerColor
 			}
+			else if (Enum.IsDefined(typeof(ActionType),Action)) {
+				//Nothing to do
+			}
 			else {
 				Log.Error("invalid action specified");
 				return false;
