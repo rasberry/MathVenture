@@ -27,17 +27,4 @@ namespace test.AltMath
 
 		static StreamWriter FileWriter = null;
 	}
-
-	public class TestItem
-	{
-		public Delegate Method;
-		public double Delta;
-		public string Name;
-	}
-
-	public interface ITestItemProvider
-	{
-		double SpeedTest(TestItem testItem);
-		IEnumerable<(TestItem,Func<TestItem,double>)> GetItems();
-	}
 }

@@ -51,5 +51,19 @@ namespace test.SequenceGen
 				Assert.AreEqual(o,t);
 			}
 		}
+
+		public static double SpeedTest(TestItem testItem)
+		{
+			int max = 1000;
+			var func = (Func<Digit>)testItem.Method;
+			for(int i=0; i<max; i++) {
+				var _ = func.Invoke();
+			}
+			return 0.0;
+		}
+
+		public static Delegate Pack(IGenerator f) {
+			return (Func<Digit>)(() => f.Next);
+		}
 	}
 }
