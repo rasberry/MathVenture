@@ -21,7 +21,7 @@ namespace MathVenture.PrimeGen.Methods
 			while(count <= index)
 			{
 				bool isPrime = true;
-				BigInteger sqr = Sqrt(p);
+				BigInteger sqr = p.Sqrt();
 				int i=0;
 				do {
 					var check = _store[i];
@@ -86,30 +86,6 @@ namespace MathVenture.PrimeGen.Methods
 		{
 			if (_store != null) { return; }
 			_store = PrimeStore.Self;
-		}
-
-		//BigInteger doesn't have a built-in sqrt function
-		static BigInteger Sqrt(BigInteger n)
-		{
-			if (n == 0 || n == 1) { return n; }
-			if (n <= 0) {
-				throw new ArithmeticException("NaN");
-			}
-
-			int bitLength = (int)Math.Ceiling(BigInteger.Log(n, 2));
-			BigInteger root = BigInteger.One << (bitLength / 2);
-
-			BigInteger last0 = 0;
-			BigInteger last1 = 1;
-			//some times the number oscilates between sqrt+0 and sqrt+1
-			while(last1 != root)
-			{
-				last1 = last0;
-				last0 = root;
-				root = (root + (n / root)) >> 1;
-			}
-
-			return BigInteger.Min(root,last0);
 		}
 	}
 }

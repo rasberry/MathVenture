@@ -11,13 +11,7 @@ namespace MathVenture.PrimeGen.Methods
 
 		public BigInteger NextPrime(BigInteger number)
 		{
-			if (number < TWO) { return TWO; }
-			BigInteger next = number + (number.IsEven ? ONE : TWO);
-
-			while(true) {
-				if (IsPrime(next)) { return next; }
-				next += TWO;
-			}
+			return Helpers.NextPrime(number,this);
 		}
 
 		public bool IsPrime(BigInteger number)
@@ -28,7 +22,7 @@ namespace MathVenture.PrimeGen.Methods
 			//Fermat's little theorem
 			//slower: a^p mod p == a
 			//faster: a^(p-1) mod p == 1
-			var test = BigInteger.ModPow(Power,number-ONE,number);
+			var test = BigInteger.ModPow(Power,number - ONE,number);
 			return test == ONE;
 		}
 

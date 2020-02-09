@@ -13,7 +13,7 @@ namespace MathVenture.PrimeGen.Methods
 		{
 			BigInteger mid = test / TWO;
 			BigInteger last = test;
-			for(BigInteger p=TWO; p<mid; p++)
+			for(BigInteger p = TWO; p < mid; p++)
 			{
 				//https://en.wikipedia.org/wiki/Pascal's_triangle#Calculating_a_row_or_diagonal_by_itself
 				BigInteger num = last * (test + ONE - p) / p;
@@ -34,21 +34,7 @@ namespace MathVenture.PrimeGen.Methods
 
 		public BigInteger NextPrime(BigInteger number)
 		{
-			if (number < TWO) {
-				return TWO;
-			}
-
-			BigInteger test = number + (number.IsEven ? ONE : TWO);
-			bool isPrime = false;
-
-			while(!isPrime)
-			{
-				isPrime = IsPrime(test);
-				if (!isPrime) {
-					test += TWO;
-				}
-			}
-			return test;
+			return Helpers.NextPrime(number,this);
 		}
 	}
 }
