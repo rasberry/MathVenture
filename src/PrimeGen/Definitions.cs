@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 
 namespace MathVenture.PrimeGen
 {
@@ -23,5 +24,15 @@ namespace MathVenture.PrimeGen
 	
 	public enum BitsImgType {
 		None = 0
+	}
+
+	public interface IPrimeSource
+	{
+		BigInteger NextPrime(BigInteger number);
+	}
+
+	public interface IPrimeTest
+	{
+		bool IsPrime(BigInteger number);
 	}
 }

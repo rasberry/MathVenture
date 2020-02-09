@@ -35,13 +35,13 @@ namespace MathVenture.PrimeGen
 			switch(Options.WhichGen)
 			{
 			case GenType.Division:
-				gen = new GenDivision();
+				gen = new Methods.TrialDivision();
 				break;
 			case GenType.Pascal:
-				gen = new GenPascal();
+				gen = new Methods.PascalRow();
 				break;
 			case GenType.Fermat:
-				gen = new GenFermat();
+				gen = new Methods.FermatLittle();
 				break;
 			}
 
@@ -93,8 +93,8 @@ namespace MathVenture.PrimeGen
 			
 			//#if false
 			for(int i=2; i<100; i++) {
-				var gControl = new GenDivision();
-				var gFermat = new GenFermat() { Power = i };
+				var gControl = new Methods.TrialDivision();
+				var gFermat = new Methods.FermatLittle() { Power = i };
 
 				BigInteger next = 1;
 				int liars = 10;

@@ -1,9 +1,9 @@
 using System;
 using System.Numerics;
 
-namespace MathVenture.PrimeGen
+namespace MathVenture.PrimeGen.Methods
 {
-	public class GenDivision : IPrimeSource
+	public class TrialDivision : IPrimeSource, IPrimeTest
 	{
 		public BigInteger GetPrime(long index)
 		{
@@ -73,6 +73,13 @@ namespace MathVenture.PrimeGen
 				}
 			}
 		}
+
+		public bool IsPrime(BigInteger number)
+		{
+			var next = NextPrime(number-1);
+			return next == number;
+		}
+
 
 		static PrimeStore _store = null;
 		static void Init()

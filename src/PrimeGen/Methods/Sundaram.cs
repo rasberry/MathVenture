@@ -1,9 +1,9 @@
 using System;
 using System.Numerics;
 
-namespace MathVenture.PrimeGen
+namespace MathVenture.PrimeGen.Methods
 {
-	public class PrimeSundaram : IPrimeSource
+	public class Sundaram : IPrimeSource
 	{
 		public BigInteger NextPrime(BigInteger number)
 		{

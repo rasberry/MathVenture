@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using MathVenture.PrimeGen;
+using MathVenture.PrimeGen.Methods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace test.PrimeGen
@@ -11,14 +12,14 @@ namespace test.PrimeGen
 		[TestMethod]
 		public void PrimeSieveTest1()
 		{
-			var p = new GenDivision();
+			var p = new TrialDivision();
 			RunPrimeTest(p);
 		}
 
 		[TestMethod]
 		public void PrimePascalTest1()
 		{
-			var p = new GenPascal();
+			var p = new PascalRow();
 			RunPrimeTest(p);
 		}
 
