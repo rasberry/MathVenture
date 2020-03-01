@@ -90,5 +90,7 @@ gen                           Generates a sequence of prime numbers and outputs 
    https://github.com/philomates/ecpp-aks-primality-proving
 1. Futility Closet, "Pascal’s Primes"
    https://www.futilitycloset.com/2015/12/29/pascals-primes/
+1. Miller–Rabin primality test
+   https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
 
 ## TODO ##

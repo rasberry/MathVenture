@@ -9,20 +9,6 @@ namespace test.PrimeGen
 	[TestClass]
 	public class PrimeTest
 	{
-		[TestMethod]
-		public void PrimeSieveTest1()
-		{
-			var p = new TrialDivision();
-			RunPrimeTest(p);
-		}
-
-		[TestMethod]
-		public void PrimePascalTest1()
-		{
-			var p = new PascalRow();
-			RunPrimeTest(p);
-		}
-
 		static void RunPrimeTest(IPrimeSource prime)
 		{
 			BigInteger p = 0;
@@ -31,6 +17,52 @@ namespace test.PrimeGen
 				int check = FirstPrimes.List[c];
 				Assert.AreEqual(p,check);
 			}
+		}
+
+		[TestMethod]
+		public void TestTrialDivision1()
+		{
+			var p = new TrialDivision();
+			RunPrimeTest(p);
+		}
+
+		[TestMethod]
+		public void TestPascalRow1()
+		{
+			var p = new PascalRow();
+			RunPrimeTest(p);
+		}
+
+		[TestMethod]
+		public void TestMillerRabinWikiRandom()
+		{
+			var p = new MillerRabinWiki();
+			p.BaseSequence = MillerRabinHelpers.RandomBases();
+			RunPrimeTest(p);
+		}
+
+		[TestMethod]
+		public void TestMillerRabinWikiSinclair()
+		{
+			var p = new MillerRabinWiki();
+			p.BaseSequence = MillerRabinHelpers.JimSinclair2011();
+			RunPrimeTest(p);
+		}
+
+		[TestMethod]
+		public void TestMillerRabinWizyRandom()
+		{
+			var p = new MillerRabinWizy();
+			p.BaseSequence = MillerRabinHelpers.RandomBases();
+			RunPrimeTest(p);
+		}
+
+		[TestMethod]
+		public void TestMillerRabinWizySinclair()
+		{
+			var p = new MillerRabinWizy();
+			p.BaseSequence = MillerRabinHelpers.JimSinclair2011();
+			RunPrimeTest(p);
 		}
 	}
 }

@@ -45,6 +45,23 @@ namespace MathVenture.PrimeGen
 			return BigInteger.Min(root,last0);
 		}
 
+		static Random Rnd = new Random();
+		public static BigInteger Random(BigInteger lower,BigInteger upper)
+		{
+			if (lower >= upper) {
+				throw new ArgumentOutOfRangeException("upper bound must be greater than lower bound");
+			}
+			var range = upper - lower;
+			var bytes = range.ToByteArray();
+			Rnd.NextBytes(bytes);
+
+			var next = BigInteger.Abs(new BigInteger(bytes));
+			while(next > range) {
+				next >>= 1; //divide by 2
+			}
+			return next + lower;
+		}
+
 		//Generic NextPrime funcion given a primality test
 		public static BigInteger NextPrime(this BigInteger number,IPrimeTest gen)
 		{
