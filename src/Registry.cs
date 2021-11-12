@@ -7,7 +7,8 @@ namespace MathVenture
 		None = 0,
 		SequenceGen = 1,
 		AltMat = 2,
-		PrimeGen = 3
+		PrimeGen = 3,
+		Factors = 4
 	}
 
 	public static class Registry
@@ -22,6 +23,8 @@ namespace MathVenture
 				return new AltMath.Start();
 			case PickAspect.PrimeGen:
 				return new PrimeGen.Start();
+			case PickAspect.Factors:
+				return new Factors.Start();
 			}
 			return null;
 		}
