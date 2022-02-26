@@ -90,8 +90,9 @@ namespace MathVenture.PrimeGen
 			//	Console.WriteLine(n);
 			//}
 			//return;
-			
+
 			//#if false
+			/*
 			for(int i=2; i<100; i++) {
 				var gControl = new Methods.TrialDivision();
 				var gFermat = new Methods.FermatLittle() { Power = i };
@@ -114,6 +115,20 @@ namespace MathVenture.PrimeGen
 				Console.WriteLine();
 			}
 			//#endif
+			*/
+
+			BigInteger next = 1;
+			for(int i=2; i<100; i++)
+			{
+				var gControl = new Methods.TrialDivision();
+				var gMod2 = new Methods.PascalMod2();
+
+				var div = gControl.NextPrime(next);
+				var mod = gMod2.NextPrime(next);
+
+				Console.WriteLine($"d={div} m={mod}");
+				next = div;
+			}
 		}
 	}
 }

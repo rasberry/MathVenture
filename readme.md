@@ -61,6 +61,14 @@ gen                           Generates a sequence of prime numbers and outputs 
  -s (number)                  Starting number for the generator (default 2)
  -e (number)                  Ending number for the generator (default 100)
  -f (file)                    Optional text file to store primes
+
+4. Factors (number) [options]
+ -m (method)                  Use another method (default Basic)
+
+Methods:
+ 1. Basic
+ 2. Sqrt
+ 3. Parallel
 ```
 ## References ###
 ### SequenceGen ###

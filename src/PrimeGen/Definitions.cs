@@ -15,13 +15,14 @@ namespace MathVenture.PrimeGen
 		None = 0,
 		Division = 1,
 		Pascal = 2,
-		Fermat = 3
+		Fermat = 3,
+		PascalBit = 4
 	}
 
 	public enum BitsType {
 		None = 0
 	}
-	
+
 	public enum BitsImgType {
 		None = 0
 	}
