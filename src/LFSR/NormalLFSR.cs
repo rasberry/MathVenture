@@ -9,9 +9,9 @@ public static class LinearFeedbackShiftRegister
 	//sequence by number of bits in the register
 	public static IEnumerable<ulong> SequenceBits(ulong initialState, int bitLength, bool repeat = false)
 	{
+		ulong taps = GetTapConstant(bitLength);
 		do {
 			ulong lfsr = initialState;
-			ulong taps = GetTapConstant(bitLength);
 
 			do {
 				ulong lsb = lfsr & 1;
@@ -24,7 +24,7 @@ public static class LinearFeedbackShiftRegister
 		} while(repeat);
 	}
 
-	//sequance by total length (rounded up to nearest bit length)
+	//sequence by total length (rounded up to nearest bit length)
 	public static IEnumerable<ulong> SequenceLength(ulong initialState, ulong length, bool repeat = false)
 	{
 		//LFSR sequences produce 2^n-1 items (skipping 0) so round up
