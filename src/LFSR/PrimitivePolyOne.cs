@@ -438,10 +438,12 @@ public static class Bits
 	{
 		ulong t = 0;
 		do {
-			{ if ((b & 1ul) != 0ul) { t ^= a; } b >>= 1; ulong s = a & h; a <<= 1; if (s != 0ul) { a^=c; }}
-			{ if ((b & 1ul) != 0ul) { t ^= a; } b >>= 1; ulong s = a & h; a <<= 1; if (s != 0ul) { a^=c; }}
-			{ if ((b & 1ul) != 0ul) { t ^= a; } b >>= 1; ulong s = a & h; a <<= 1; if (s != 0ul) { a^=c; }}
-			{ if ((b & 1ul) != 0ul) { t ^= a; } b >>= 1; ulong s = a & h; a <<= 1; if (s != 0ul) { a^=c; }}
+			if ((b & 1ul) != 0ul) { t ^= a; }
+			b >>= 1;
+
+			ulong s = a & h;
+			a <<= 1;
+			if (s != 0ul) { a ^= c; }
 		}
 		while(b != 0ul);
 		return t;

@@ -16,6 +16,22 @@ public class Start : IMain
 
 	public void Main()
 	{
+		var rnd = new System.Random();
+		for(int i=0; i<2; i++)
+		{
+			ulong a = (ulong)rnd.NextInt64(0,100);
+			ulong b = (ulong)rnd.NextInt64(0,100);
+			ulong c = (ulong)rnd.NextInt64(0, (long)System.Math.Min(a,b) - 1);
+
+			var pp = PrimitivePoly.PolyModMultiply(a,b,c,ulong.MaxValue);
+			var np = (System.UInt128)a * b % c;
+
+			Log.Debug($"pp = {pp} np = {np}");
+			Log.Debug($"pp = {TestLFSR.ToBinary(pp,true)}");
+			Log.Debug($"np = {TestLFSR.ToBinary((ulong)np,true)}");
+		}
+		return;
+
 		for(int i=2; i<=9; i++) {
 			TestLFSR.TryAll(i);
 		}

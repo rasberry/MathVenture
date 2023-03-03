@@ -49,19 +49,18 @@ public static class TestLFSR
 				count++;
 			}
 			if (count == max) {
-				Log.Message($"B:{bitLength} b:{b} S:{b.ToBinary(bitLength)} I:{IndexBits(b)}");
+				Log.Message($"B:{bitLength} b:{b} S:{b.ToBinary(true)} I:{IndexBits(b)}");
 			}
 		}
 	}
 
-	public static string ToBinary(this ulong u, int pad = 0)
+	public static string ToBinary(this ulong u, bool pad = false)
 	{
-		string num = Convert.ToString((long)u,2);
+		var sNum = Convert.ToString((long)u,2);
 
-		pad -= num.Length;
 		string sPad = "";
-		if (pad > 0) {
-			sPad = new string('0',pad);
+		if (pad) {
+			sPad = new string('0',64 - sNum.Length);
 		}
 		return sPad + Convert.ToString((long)u,2);
 	}
