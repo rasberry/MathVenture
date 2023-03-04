@@ -20,7 +20,7 @@ namespace MathVenture.SequenceGen
 				.WL(1,"-d (number)","Number of digits to print (default 1000)")
 				.WL(1,"-d-",        "Keep printing numbers until process is killed")
 				.WL(1,"-f (file)",  "Write digits to a file instead of standard out")
-				.WL(1,"-v",         "Show progress bar and stats")
+				.WL(1,"-p",         "Show progress bar and stats")
 				.WL(1,"-n",         "Insert newlines periodically")
 				.WL(1,"-nw",        "Number of characters between newlines (default 80)")
 				.WL()
@@ -43,7 +43,7 @@ namespace MathVenture.SequenceGen
 			for(int a=0; a<len; a++)
 			{
 				string curr = args[a];
-				
+
 				if (curr == "-b" && ++a < len) {
 					if (!int.TryParse(args[a], out int @base)) {
 						Log.Error($"Cannot parse '{args[a]}' as a number");
@@ -90,7 +90,7 @@ namespace MathVenture.SequenceGen
 					}
 					OutputFile = args[a];
 				}
-				else if (curr == "-v") {
+				else if (curr == "-p") {
 					ShowStats = true;
 				}
 				else if (Selected == null) {

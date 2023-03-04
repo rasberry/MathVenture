@@ -8,6 +8,8 @@ Options:
  -h / --help                  Show full help
  (aspect) -h                  Aspect specific help
  --aspects                    List possible aspects
+ --debug                      Show debug messages (implies -v)
+ -v                           Show extra information
 
 1. SequenceGen (sequence) [options]
  A set of algorithms that can continuously produce digits of infinite series
@@ -16,7 +18,7 @@ Options:
  -d (number)                  Number of digits to print (default 1000)
  -d-                          Keep printing numbers until process is killed
  -f (file)                    Write digits to a file instead of standard out
- -v                           Show progress bar and stats
+ -p                           Show progress bar and stats
  -n                           Insert newlines periodically
  -nw                          Number of characters between newlines (default 80)
 
@@ -53,14 +55,26 @@ Functions:
  11. CosXupremZero            Cos function by XupremZero
 
 3. PrimeGen (gen|bits|bitsimg) [options]
- --debug                      Show debug messages (implies -v)
- -v                           Show extra information
-
 gen                           Generates a sequence of prime numbers and outputs one per line
  -t (type)                    Type of generator to use (leave empty to list the types)
  -s (number)                  Starting number for the generator (default 2)
  -e (number)                  Ending number for the generator (default 100)
  -f (file)                    Optional text file to store primes
+
+4. Factors (number) [options]
+ -m (method)                  Use another method (default Basic)
+
+Methods:
+ 1. Basic
+ 2. Sqrt
+ 3. Parallel
+
+5. LFSR [options]
+ -b (number)                  The bit count to produce a 2^(bitcount)-1 sequence [1-63]
+ -m (number)                  Max number to allow for the sequence (-b and -m should not be used together)
+ -x                           Use Xilinx taps instead of random ones (ignored if -t is specified)
+ -t (number)                  A primitive polynomial for use as taps
+ -i (number)                  The initial state for the LFSR (defaults to 1)
 ```
 ## References ###
 ### SequenceGen ###
@@ -84,7 +98,7 @@ gen                           Generates a sequence of prime numbers and outputs 
    http://freestuff.grok.co.uk/rom-dis/
 
 ### PrimeGen ###
-1. "The AKS "PRIMES in P" Algorithm Resource"
+1. "The AKS "PRIMES in P" Algorithm Resource
    http://fatphil.org/maths/AKS/#Implementations
 1. Phillip Mates, "3 Primality Proving Implementations: ECPP, AKS, and a hybrid of the two"
    https://github.com/philomates/ecpp-aks-primality-proving
@@ -92,5 +106,11 @@ gen                           Generates a sequence of prime numbers and outputs 
    https://www.futilitycloset.com/2015/12/29/pascals-primes/
 1. Miller–Rabin primality test
    https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+
+### LFSR ###
+1. GF(2) is the unique Galois field with two elements
+   https://en.wikipedia.org/wiki/GF%282%29
+1. Arndt, Jörg; "FXT: a library of algorithms"
+   https://www.jjj.de/fxt/fxtpage.html
 
 ## TODO ##

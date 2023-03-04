@@ -25,8 +25,7 @@ namespace MathVenture.PrimeGen.Methods
 				int i=0;
 				do {
 					var check = _store[i];
-					BigInteger rem;
-					BigInteger.DivRem(p,check, out rem);
+					BigInteger.DivRem(p, check, out BigInteger rem);
 					if (rem == 0) {
 						isPrime = false;
 						break;

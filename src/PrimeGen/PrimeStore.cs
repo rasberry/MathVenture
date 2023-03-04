@@ -67,22 +67,14 @@ namespace MathVenture.PrimeGen
 
 		static BigInteger BytesToBigInt(byte[] encoded)
 		{
-			object proto;
-			BinaryFormatter bf = new BinaryFormatter();
 			using (var ms = new MemoryStream(encoded)) {
-				proto = bf.Deserialize(ms);
+				return new BigInteger(encoded);
 			}
-			return (BigInteger)proto;
 		}
 
 		static byte[] BigIntToBytes(BigInteger bi)
 		{
-			BinaryFormatter bf = new BinaryFormatter();
-			using (var ms = new MemoryStream()) {
-				bf.Serialize(ms,bi);
-				ms.Seek(0,SeekOrigin.Begin);
-				return ms.ToArray();
-			}
+			return bi.ToByteArray();
 		}
 
 		public BigInteger this[long index]

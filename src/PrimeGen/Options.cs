@@ -15,9 +15,6 @@ namespace MathVenture.PrimeGen
 			sb
 				.WL()
 				.WL(0,$"{name} (gen|bits|bitsimg) [options]")
-				.WL(1,"--debug"    ,"Show debug messages (implies -v)")
-				.WL(1,"-v"         ,"Show extra information")
-				.WL()
 				.WL(0,"gen"        ,"Generates a sequence of prime numbers and outputs one per line")
 				.WL(1,"-t (type)"  ,"Type of generator to use (leave empty to list the types)")
 				.WL(1,"-s (number)","Starting number for the generator (default 2)")
@@ -77,15 +74,8 @@ namespace MathVenture.PrimeGen
 			for(int a=0; a<len; a++)
 			{
 				string curr = args[a];
-				
-				if (curr == "--debug") {
-					Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-					Log.ShowInfo = true;
-				}
-				else if (curr == "-v") {
-					Log.ShowInfo = true;
-				}
-				else if (curr == "-t") {
+
+				if (curr == "-t") {
 					if (++a < len) {
 						if (Action == ActionType.Gen
 							&& !TryParseType<GenType>(args[a],out WhichGen)) {
