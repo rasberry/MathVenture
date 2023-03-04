@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace MathVenture
@@ -16,8 +17,10 @@ namespace MathVenture
 				.WL(1,"-h / --help","Show full help")
 				.WL(1,"(aspect) -h","Aspect specific help")
 				.WL(1,"--aspects"  ,"List possible aspects")
+				.WL(1,"--debug"    ,"Show debug messages (implies -v)")
+				.WL(1,"-v"         ,"Show extra information")
 			;
-			
+
 			if (ShowFullHelp)
 			{
 				foreach(PickAspect a in Aids.EnumAll<PickAspect>()) {
@@ -70,6 +73,13 @@ namespace MathVenture
 						return false;
 					}
 					Aspect = which;
+				}
+				else if (curr == "--debug") {
+					Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+					Log.ShowInfo = true;
+				}
+				else if (curr == "-v") {
+					Log.ShowInfo = true;
 				}
 				else {
 					pArgs.Add(curr);
